@@ -3571,7 +3571,11 @@ class WorkflowState(models.Model):
                 fields=["page"],
                 condition=Q(status__in=("in_progress", "needs_changes")),
                 name="unique_in_progress_workflow",
-            )
+            ),
+            models.UniqueConstraint(
+                fields=["page", "workflow"],
+                name="unique_page_in_workflow",
+            ),
         ]
 
 
